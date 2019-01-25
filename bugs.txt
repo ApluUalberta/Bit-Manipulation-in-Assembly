@@ -1,0 +1,12 @@
+CMPUT 229 lab 1
+Allen Lu
+
+Bugs.txt
+
+
+
+
+Finding the bug:
+
+	Line 26, lw loads the whole word into the $a1 register, this is wrong as the comparison is not with the LSB. This pseudo-command needs to be lb instead.
+	Line 37, addi $a0 $a0 increments by the corresponding amount of bytes. Since char types are 1 byte of size, it increments by 4 characters. This is wrong. It should be 1 byte.

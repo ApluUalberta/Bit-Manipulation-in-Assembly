@@ -1,0 +1,86 @@
+Cmput 229 Lab 1
+Allen Lu
+
+1) The output of the program:
+
+number = 35
+
+2) D3 in Hexadecimal
+
+3) 00400038
+
+4) Not including the first occurence, lw (load word) is called 6 times
+
+5) [0x10010010]          0x00000013 0x00000000 0x626d754e 0x3d207265
+
+4e  75  6d  62  65  72  20  3d
+N   u   m   b   e   r       =
+
+6)
+
+SEGMENT: 0x800001C0
+Address: 0x3344003c
+
+3c: <, 00: NUL, 44: D, 33: 3
+
+Result: <NULD3
+
+7)
+
+SEGMENT: 0x800001C0
+Address: 0x3344003c
+
+		3c: 0011 1100, 00: 0000 0000, 44: 0100 0100, 33: 0100 0100
+
+So, the binary representation is: 0011 0011 0100 0100 0000 0000 0011 1100
+Finding the 2’s complement, we use the compliment:
+1100 1100 1011 1011 1111 1111 1100 0011
++                                     1
+
+
+= 1100 1100 1011 1011 1111 1111 1100 0100
+So, the 2’s complement representation is 1100 1100 1011 1011 1111 1111 1100 0100
+
+
+8)
+
+.data 
+.word stores 21, 88, -5, -10 as 32 bit quantities in successive memory
+	Stores 21 in 0x10010000
+	Stores 88 in 0x10010004
+	Stores -5 in 0xffffffffb
+	Stores -10 in 0xfffffff6
+.byte Stores 10 and ‘c’ in successive bytes of memory.
+	Stores 10 in 0x10010010
+	Stores c in 0x10010011
+.align Aligns the next datum on a 2^2 or 4 or word byte boundary.
+	Starts at the next point in memory or at 0x10010014.
+.space Allocates 9 bytes of space n the current segment.
+	Null characters (or 0) fills 0x10010014 with 0x00000000
+	Null Characters (or 0) fills 0x10010018 with 0x00000000
+	Null Character starts at 1001001c with 0,  so it starts with 2 0’s in little endian.
+.asciiz Stores “ABCD” in memory and null-terminates it
+	Stores A at 0x1001001d
+	Stores B at 0x1001001e
+	Stores C at 0x1001001f
+	Stores D at 0x10010020
+	Stores NULL at 0x10010021
+.ascii Stores “EF” in memory, but does NOT terminate it.
+	Stores E in 10010022
+	Stores F in 10010023
+	
+.text
+
+9)
+
+In the terminal,
+   1) Type spim and enter
+   2) Type load “filename” and enter
+   3) Type run and enter
+   4) Type print $s0
+   5) You should see: Reg 16 = 0x00000000 (0)
+
+
+10)
+
+Since the lab1.s program only converts for one given integer input, the way to read in several integers to convert would be with the Loop Control structure. The loop should be before the conversion process in the program and should terminate once all the integers are processed. This would be known by storing the number of integers inputted into another register, and decremented until a termination condition is met.
